@@ -9,6 +9,12 @@ config change. Consumers link that block from their bump PR.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-12
+
+### Changed
+
+- Republish so the npm Trusted Publisher on `@simplycubed/llm-gateway` can validate. No API change.
+
 ## [0.2.0] - 2026-11-12
 
 ### Changed
