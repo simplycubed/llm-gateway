@@ -1,10 +1,12 @@
 name: Publish
 
-# The RELEASE path — publishes @charlesgreen/llm-gateway to the public npm registry
-# on a `v*` tag, never on a merge to main.
+# The RELEASE path — publishes @simplycubed/llm-gateway to the public npm registry
+# on a `v*` tag, never on a merge to main. The package name comes from package.json.
 #
-# The GitHub repository is simplycubed/llm-gateway. The npm Trusted Publisher on this
-# package must name that repository, this workflow file, and the `publish` Environment.
+# The GitHub repository is simplycubed/llm-gateway. The npm Trusted Publisher on
+# @simplycubed/llm-gateway must name that repository, this workflow file, and the
+# `publish` Environment. The publisher on @charlesgreen/llm-gateway does not
+# authorize this package.
 #
 # Why tag-triggered: a published version is IMMUTABLE. Unpublishing is disruptive at
 # best and blocked at worst, which puts a publish in the same irreversible class as a

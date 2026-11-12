@@ -9,6 +9,26 @@ config change. Consumers link that block from their bump PR.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-12
+
+### Changed
+
+- The published name is `@simplycubed/llm-gateway`.
+
+### Migration
+
+Install and import the new name. Config is unchanged.
+
+```sh
+pnpm add @simplycubed/llm-gateway
+```
+
+```ts
+import { createGatewayClient } from "@simplycubed/llm-gateway";
+```
+
+`@charlesgreen/llm-gateway` stays published at 0.1.4 and receives no further releases.
+
 ## [0.1.4] - 2026-11-12
 
 ### Changed
