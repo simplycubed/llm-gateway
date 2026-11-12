@@ -1,10 +1,12 @@
 # AGENTS.md: `@charlesgreen/llm-gateway`
 
 - `AGENTS.md` is the repo-local source of truth for agent instructions, and the contract for this
-  package's design decisions. Keep `CLAUDE.md` as a thin shim that imports this file; do not
-  maintain duplicate guidance in both places. Where this file states a decision, implement that
-  decision rather than re-deriving an alternative. If a decision turns out to be wrong, change this
-  file in the same PR that changes the code, with the reason.
+  package's design decisions. Where this file states a decision, implement that decision rather
+  than re-deriving an alternative. If a decision turns out to be wrong, change this file in the
+  same PR that changes the code, with the reason.
+
+Owned by SimplyCubed, GK. Source: https://github.com/simplycubed/llm-gateway. Published to the
+public npm registry as `@charlesgreen/llm-gateway`.
 
 A portable, dependency-free TypeScript client that carries model traffic through Cloudflare AI
 Gateway. Published to the public npm registry for use by any consumer that needs config-driven

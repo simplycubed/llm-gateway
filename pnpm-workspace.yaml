@@ -1,0 +1,7 @@
+# pnpm 11 reads overrides from this file.
+# vite 8.2.2 sits inside the advisory range that ends at 8.2.3.
+# minimatch 10 is what typescript-eslint still declares. The patched line is 11,
+# and the only call site passes a path, a pattern, and `{ dot: true }`.
+overrides:
+  vite: 8.2.6
+  minimatch@10: 11.0.8

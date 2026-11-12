@@ -9,6 +9,18 @@ config change. Consumers link that block from their bump PR.
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-11-12
+
+### Changed
+
+- Copyright holder is SimplyCubed, GK. The repository is
+  https://github.com/simplycubed/llm-gateway.
+- `CLAUDE.md` is removed. Agent instructions live in `AGENTS.md`.
+- Dev-only: vitest and `@vitest/coverage-v8` 4.1.11 / 4.1.8 → 4.1.12. The
+  lockfile resolves `vite` 8.2.6, `source-map-js` 1.2.2, `brace-expansion`
+  1.1.21 and 5.0.12, and `minimatch` 11.0.8 in place of 10.2.6. These close
+  the open dependency alerts.
+
 ## [0.1.3] - 2026-09-15
 
 ### Added

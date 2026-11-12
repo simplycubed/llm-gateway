@@ -14,7 +14,8 @@ name: CI
 # PR against a required check that no longer has a producer.
 #
 # Later work EXTENDS this gate by adding steps to `pnpm check`, not by adding
-# workflows.
+# workflows. CodeQL is the exception: it is a separate security workflow, not
+# part of this gate.
 
 on:
   push:
