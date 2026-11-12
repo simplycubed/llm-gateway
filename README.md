@@ -222,3 +222,9 @@ interface requirement. Never weaken the scanner to make it pass; route the value
 instead.
 
 Releases publish on a `v*` tag, not on merge. See `.github/workflows/publish.yml` for the flow.
+
+Source: https://github.com/simplycubed/llm-gateway
+
+## License
+
+[MIT](LICENSE). Copyright (c) 2026 SimplyCubed, GK.

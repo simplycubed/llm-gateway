@@ -1,0 +1,58 @@
+name: CodeQL
+
+# Code scanning for this package. It is not part of the `check` gate in ci.yml:
+# that gate stays hermetic and offline, and this job uploads results to the
+# repository's code scanning alerts.
+#
+# Both languages use build-mode none. javascript-typescript reads the TypeScript
+# source directly, and actions reads the workflow files. There is no
+# compiled-language build for CodeQL to trace.
+#
+# This file is the configuration. Default setup in the repository settings
+# must stay off, or GitHub runs a second scan beside this workflow.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Weekly, after Monday morning. A schedule run is what catches vulns
+    # that land in the query pack without a push.
+    - cron: "17 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+          - language: actions
+            build-mode: none
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"

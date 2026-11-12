@@ -1,7 +1,8 @@
 {
   "name": "@charlesgreen/llm-gateway",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Portable client that routes chat-completions traffic through Cloudflare AI Gateway. Provider choice is configuration, never code.",
+  "author": "SimplyCubed, GK",
   "type": "module",
   "sideEffects": false,
   "license": "MIT",
@@ -39,7 +40,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/charlesgreen/llm-gateway.git"
+    "url": "git+https://github.com/simplycubed/llm-gateway.git"
+  },
+  "homepage": "https://github.com/simplycubed/llm-gateway#readme",
+  "bugs": {
+    "url": "https://github.com/simplycubed/llm-gateway/issues"
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
@@ -61,12 +66,12 @@
     "@cloudflare/workers-types": "^4.20260529.1",
     "@eslint/js": "^9.39.4",
     "@types/node": "^25.9.1",
-    "@vitest/coverage-v8": "4.1.8",
+    "@vitest/coverage-v8": "4.1.12",
     "eslint": "^9.39.4",
     "globals": "^17.6.0",
     "prettier": "^3.8.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.60.1",
-    "vitest": "4.1.11"
+    "vitest": "4.1.12"
   }
 }
