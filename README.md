@@ -1,4 +1,4 @@
-# @charlesgreen/llm-gateway
+# @simplycubed/llm-gateway
 
 A small, dependency-free TypeScript client that carries model traffic through
 Cloudflare AI Gateway.
@@ -13,7 +13,7 @@ The rule that shapes the whole design, and the gate that enforces it, are in `AG
 
 ```mermaid
 flowchart TD
-  App["Application Code"] -->|"client.generate(req)"| GatewayClient["@charlesgreen/llm-gateway"]
+  App["Application Code"] -->|"client.generate(req)"| GatewayClient["@simplycubed/llm-gateway"]
 
   subgraph ClientInternal["Gateway Client"]
     GatewayClient --> Resolve["resolveEndpoint(config)"]
@@ -63,7 +63,7 @@ adding any of them would bake in an opinion a consumer may not share.
 The package is published to the public npm registry:
 
 ```sh
-pnpm add @charlesgreen/llm-gateway
+pnpm add @simplycubed/llm-gateway
 ```
 
 ## Usage
@@ -73,7 +73,7 @@ pnpm add @charlesgreen/llm-gateway
 Most providers use the unified chat completions endpoint:
 
 ```ts
-import { createGatewayClient } from "@charlesgreen/llm-gateway";
+import { createGatewayClient } from "@simplycubed/llm-gateway";
 
 const client = createGatewayClient({
   accountId: env.AI_GATEWAY_ACCOUNT_ID,
@@ -195,7 +195,7 @@ createGatewayClient({
 The testing subpath exports `fakeFetch` and `cassetteClient` to test callers without network calls:
 
 ```ts
-import { fakeFetch, cassetteClient } from "@charlesgreen/llm-gateway/testing";
+import { fakeFetch, cassetteClient } from "@simplycubed/llm-gateway/testing";
 
 // Assert the exact URL, headers, and body the client constructs:
 const fake = fakeFetch();
