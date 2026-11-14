@@ -5,6 +5,8 @@ set -euo pipefail
 
 # .nvmrc is major 24; this patch pin matches Vendor Watch. Bump when that major changes.
 NODE_VERSION=24.22.1
+# node-v24.22.1-linux-x64.tar.xz from nodejs.org/dist/v24.22.1/SHASUMS256.txt. Pinned, not fetched at runtime.
+NODE_SHA256=6c172a9ab6718f7b801fb5a7bd486af2ee5e32758086a04b84fcce2aa77095e6
 # package.json#packageManager
 PNPM_VERSION=11.5.2
 
@@ -21,7 +23,9 @@ fi
 
 if ! /usr/local/bin/node -v 2>/dev/null | grep -qx "v${NODE_VERSION}"; then
   tmp="$(mktemp)"
+  trap 'rm -f "${tmp}"' EXIT
   curl -fsSL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" -o "${tmp}"
+  echo "${NODE_SHA256}  ${tmp}" | sha256sum -c -
   sudo tar -xJf "${tmp}" -C /usr/local --strip-components=1 --no-same-owner
   rm -f "${tmp}"
 fi
