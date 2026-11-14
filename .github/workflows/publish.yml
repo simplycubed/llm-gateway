@@ -49,7 +49,7 @@ jobs:
       CI: "true"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # FIRST, before install or build. A tag that disagrees with package.json can
       # never publish correctly, so it should cost seconds rather than a full gate
@@ -67,7 +67,7 @@ jobs:
           run_install: false
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: pnpm
@@ -130,7 +130,7 @@ jobs:
       # from the run context and needs no extra scope. Keep it that way.
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
@@ -138,14 +138,14 @@ jobs:
           run_install: false
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: pnpm
 
       # No build here by design — dist/ arrives as the verified artifact from job 1.
       - name: Download the verified dist
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           name: dist-${{ github.ref_name }}
           path: dist/
