@@ -9,6 +9,8 @@ config change. Consumers link that block from their bump PR.
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-11-21
+
 ### Changed
 
 - Dev-only: roll the open dependency updates into one change. TypeScript
