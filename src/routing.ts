@@ -10,6 +10,20 @@ import type { Endpoint, GatewayConfig, ResolvedConfig } from "./types.js";
 const GATEWAY_ORIGIN = "https://gateway.ai.cloudflare.com/v1";
 
 /**
+ * Trailing slashes, stripped WITHOUT a quantified regex.
+ *
+ * `/\/+$/` is a polynomial-ReDoS shape (CodeQL `js/polynomial-redos`): a
+ * quantifier directly before an anchor backtracks once per start position, so a
+ * long run of slashes costs O(n^2). The scan is a character walk; do not
+ * "simplify" it back to a regex.
+ */
+function stripTrailingSlashes(value: string): string {
+  let end = value.length;
+  while (end > 0 && value.charCodeAt(end - 1) === 47 /* "/" */) end--;
+  return value.slice(0, end);
+}
+
+/**
  * Reduce a supplied base URL to the gateway ROOT.
  *
  * The dashboard hands out a URL that already points at the unified
@@ -19,10 +33,10 @@ const GATEWAY_ORIGIN = "https://gateway.ai.cloudflare.com/v1";
  * otherwise.
  */
 export function stripToGatewayRoot(value: string): string {
-  let out = value.trim().replace(/\/+$/, "");
+  let out = stripTrailingSlashes(value.trim());
   out = out.replace(/\/chat\/completions$/i, "");
   out = out.replace(/\/compat$/i, "");
-  return out.replace(/\/+$/, "");
+  return stripTrailingSlashes(out);
 }
 
 /**
