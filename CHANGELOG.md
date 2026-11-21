@@ -9,6 +9,16 @@ config change. Consumers link that block from their bump PR.
 
 ## [Unreleased]
 
+### Changed
+
+- Dev-only: roll the open dependency updates into one change. TypeScript
+  5.9.3 → 6.0.3, ESLint 9.39.5 → 10.15.0, `@types/node` 25.9.5 → 26.6.6,
+  `@cloudflare/workers-types` 4.20260702.1 → 5.20261120.1, `typescript-eslint`
+  8.68.0 → 8.73.0, `globals` 17.11.0 → 17.14.0, `prettier` 3.9.6 → 3.10.1.
+  Actions: `actions/checkout` v6 → v7, `actions/setup-node` v6 → v7,
+  `actions/download-artifact` v6 → v8. No runtime dependency and no public API
+  change.
+
 ## [0.2.1] - 2026-11-12
 
 ### Changed
