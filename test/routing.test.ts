@@ -121,6 +121,35 @@ describe("routing — baseUrl override", () => {
     expect(fake.only().url).toBe("https://gw.example.test/v1/acct/gw/compat/chat/completions");
   });
 
+  it("tolerates a RUN of trailing slashes, not just one", async () => {
+    const fake = fakeFetch();
+    await createGatewayClient({
+      ...BASE,
+      baseUrl: "https://gw.example.test/v1/acct/gw///",
+      fetchImpl: fake.fetchImpl,
+    }).generate(REQ);
+
+    expect(fake.only().url).toBe("https://gw.example.test/v1/acct/gw/compat/chat/completions");
+  });
+
+  it("strips a dashboard-pasted URL that ALSO carries trailing slashes", async () => {
+    const fake = fakeFetch();
+    await createGatewayClient({
+      ...PATH_ADDRESSED,
+      // Copy-paste reality: the dashboard URL plus whatever slashes the paste
+      // picked up. The anchored `/chat/completions$` replace only matches once the
+      // trailing run is gone, so reaching the root here needs both strips and both
+      // replaces to compose in the right order.
+      baseUrl: "https://gw.example.test/v1/acct/gw/compat/chat/completions///",
+      fetchImpl: fake.fetchImpl,
+    }).generate(REQ);
+
+    expect(fake.only().url).toBe(
+      "https://gw.example.test/v1/acct/gw" +
+        "/prov-x/res-y/deployment-z/chat/completions?api-version=2099-01-01",
+    );
+  });
+
   it("ignores an unfilled <placeholder> baseUrl and composes from the ids instead", async () => {
     const fake = fakeFetch();
     await createGatewayClient({
