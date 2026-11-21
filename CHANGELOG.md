@@ -9,6 +9,21 @@ config change. Consumers link that block from their bump PR.
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-11-21
+
+### Fixed
+
+- Security: `stripToGatewayRoot` stripped trailing slashes with `/\/+$/` at both of its
+  call sites. A quantifier placed directly before an anchor backtracks once per start
+  position, so a `baseUrl` carrying a long run of slashes that are not at the end cost
+  O(n^2) — 100k slashes measured at ~9s. Both uses are now one character walk, which is
+  linear. Reported by CodeQL as `js/polynomial-redos` (high), alerts #1 and #2.
+
+  No public API change and no behaviour change: the two implementations agree on every
+  output, including the purely textual `"https://"` → `"https:"`. `baseUrl` is
+  configuration rather than request input, so this was a deployment-time foot-gun rather
+  than a reachable DoS path.
+
 ## [0.2.2] - 2026-11-21
 
 ### Changed
